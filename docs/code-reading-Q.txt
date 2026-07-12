@@ -1,0 +1,185 @@
+What is the output of the following code?
+
+Q
+====
+numbers = [1, 3, 5, 6]
+
+print("Starting search...")
+for x in numbers:
+    if x % 2 == 0:
+        print("Found even:", x)
+        break
+else:
+    print("No even numbers found")
+
+print("Done")
+
+Q
+===
+What is the output of the following code?
+class Car:
+    wheels = 4  
+
+    def __init__(self, model):
+        self.model = model
+
+c1 = Car("Mazda")
+c2 = Car("Honda")
+
+c1.wheels = 6       
+Car.wheels = 3      
+
+print(f"c1 wheels: {c1.wheels}")
+print(f"c2 wheels: {c2.wheels}")
+
+Q
+======
+
+What is the output of the following code?
+def divide(x, y):
+    try:
+        result = x / y
+    except ZeroDivisionError:
+        print("Error caught")
+    else:
+        print(f"Result: {result}")
+    finally:
+        print("Cleanup done")
+
+print("--- Call 1 ---")
+divide(10, 2)
+print("--- Call 2 ---")
+divide(5, 0)
+
+
+Q
+=========
+What happens when running the following code?
+my_dict = {}
+
+try:
+    my_dict[(1, 2)] = "Tuple Key"
+    print("Added tuple key")
+
+    my_dict[[1, 2]] = "List Key"
+    print("Added list key")
+
+except TypeError as e:
+    print("Error caught")
+
+Q
+========
+
+What is the output of the following code?
+class Root:
+    def __init__(self):
+        print("Root Init")
+
+class Child(Root):
+    def __init__(self):
+        print("Child Start")
+        # Explicitly calling parent init
+        super().__init__()
+        print("Child End")
+
+c = Child()
+
+
+Q
+========
+
+If "output.txt" is empty, what will be its content after this code?
+lines = ["Line 1", "Line 2", "Line 3"]
+
+with open("output.txt", "w") as f:
+    f.writelines(lines)
+
+with open("output.txt", "r") as f:
+    content = f.read()
+    print(content)
+
+Q
+========
+
+What is the output of the following code?
+class Product:
+    def __init__(self, price):
+        self._price = 0
+        self.price = price  
+
+    @property
+    def price(self):
+        return self._price
+
+    @price.setter
+    def price(self, value):
+        if value < 0:
+            print("Invalid price")
+        else:
+            self._price = value
+
+p = Product(100)
+p.price = -50
+print(f"Final price: {p.price}")
+
+Q
+==========
+
+What is the output of the following code?
+def sum_numbers(initial, *args):
+    total = initial
+    for num in args:
+        total += num
+    return total
+
+# 10 is 'initial', the rest are packed into 'args'
+result = sum_numbers(10, 1, 2, 3)
+print(result)
+
+Q
+==========
+If this code is in main.py and run directly, what is the output?
+# Assume this is inside main.py
+def helper():
+    return "Helper function"
+
+if __name__ == "__main__":
+    print("Running directly")
+    print(helper())
+else:
+    print("Imported as module")
+
+
+Q
+=========
+class Ticket:
+    def __init__(self, event, price):
+        self.event = event
+        self.price = price
+        self.is_valid = True
+
+    def cancel(self):
+        self.is_valid = False
+
+    def __str__(self):
+        status = "Valid" if self.is_valid else "Cancelled"
+        return f"Ticket: {self.event} ({status})"
+
+t = Ticket("Concert", 100)
+print(t)
+
+t.cancel()
+print(t)
+
+Q
+=========
+
+What is the output of the following code?
+words = ["apple", "banana", "apple", "orange", "banana", "apple"]
+freq = {}
+
+for word in words:
+    freq[word] = freq.get(word, 0) + 1
+
+print(f"apple count: {freq['apple']}")
+print(f"grape count: {freq.get('grape', 0)}")
