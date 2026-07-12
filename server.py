@@ -32,7 +32,7 @@ def handle_client(client_socket, client_address):
     try:
         request_data = b"" 
         
-        # שלב 2: קריאת הנתונים מהרשת עד למציאת סוף הכותרות
+        # קריאת הנתונים מהרשת עד למציאת סוף הכותרות
         while b"\r\n\r\n" not in request_data:
             chunk = client_socket.recv(1024)
             if not chunk:
@@ -45,7 +45,7 @@ def handle_client(client_socket, client_address):
             request_line = lines[0]
             parts = request_line.split(' ')
             
-            # שלב 3: פענוח הבקשה (Method, Path, Version)
+            # פענוח הבקשה (Method, Path, Version)
             if len(parts) == 3:
                 method = parts[0]
                 path = parts[1]
@@ -55,12 +55,12 @@ def handle_client(client_socket, client_address):
                     send_error(client_socket, 400, "Bad Request")
                     return
                     
-                # שלב 4: אבטחה - חסימת ניסיון לחציית ספריות
+                #  אבטחה - חסימת ניסיון לחציית ספריות
                 if ".." in path:
                     send_error(client_socket, 400, "Bad Request")
                     return
                     
-                # שלב 4: אבטחה - אימות מול הספריות המורשות
+                # אבטחה - אימות מול הספריות המורשות
                 is_allowed = False
                 if path == '/' or path.count('/') == 1:
                     is_allowed = True
@@ -75,7 +75,7 @@ def handle_client(client_socket, client_address):
                     send_error(client_socket, 403, "Forbidden")
                     return
 
-                # --- שלב 5: קריאת הקובץ והחזרת התגובה ---
+                # --- קריאת הקובץ והחזרת התגובה ---
                 
                 # אם המשתמש הקיש רק את הכתובת הראשית, נפנה אותו לקובץ index.html
                 if path == '/':
@@ -127,7 +127,7 @@ def handle_client(client_socket, client_address):
 
 def start_server():
     """
-    הפונקציה הראשית שמפעילה את השרת (שלב 1 - תשתית ומקביליות)
+    הפונקציה הראשית שמפעילה את השרת
     """
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
