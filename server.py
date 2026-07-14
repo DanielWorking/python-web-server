@@ -1,6 +1,5 @@
 import socket
 import threading
-import os
 
 # --- הגדרות כלליות של השרת ---
 HOST = '127.0.0.1'
